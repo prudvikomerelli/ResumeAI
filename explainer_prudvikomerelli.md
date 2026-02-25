@@ -10,7 +10,7 @@
 | Prudvi Komerelli | prudvikomerelli@gmail.com |
 
 ## Live Deployment URL
-https://resume-ai.vercel.app
+https://resume-ai-sable-ten.vercel.app/
 
 ## GitHub Repository URL
 https://github.com/prudvikomerelli/ResumeAI
