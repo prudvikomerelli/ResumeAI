@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Tone {
+  CONCISE
+  IMPACT
+  LEADERSHIP
+}
+
+enum Plan {
+  FREE
+  PRO
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+}
+
+model User {
+  id                String         @id @default(uuid()) @db.Uuid
+  name              String?
+  email             String         @unique
+  supabaseUserId    String         @unique @map("supabase_user_id")
+  stripeCustomerId  String?        @map("stripe_customer_id")
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @updatedAt @map("updated_at")
+  generations       Generation[]
+  subscription      Subscription?
+  usage             Usage[]
+
+  @@map("users")
+}
+
+model Generation {
+  id               String   @id @default(uuid()) @db.Uuid
+  userId           String   @map("user_id") @db.Uuid
+  jobTitle         String?  @map("job_title")
+  jobDescription   String   @map("job_description") @db.Text
+  resumeOriginal   String   @map("resume_original") @db.Text
+  resumeOptimized  String   @map("resume_optimized") @db.Text
+  coverLetter      String   @map("cover_letter") @db.Text
+  atsScore         Int      @map("ats_score")
+  matchedKeywords  Json     @map("matched_keywords")
+  missingKeywords  Json     @map("missing_keywords")
+  tone             Tone     @default(CONCISE)
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("generations")
+}
+
+model Subscription {
+  id                    String             @id @default(uuid()) @db.Uuid
+  userId                String             @unique @map("user_id") @db.Uuid
+  stripeSubscriptionId  String?            @map("stripe_subscription_id")
+  plan                  Plan               @default(FREE)
+  status                SubscriptionStatus @default(ACTIVE)
+  currentPeriodEnd      DateTime?          @map("current_period_end")
+  createdAt             DateTime           @default(now()) @map("created_at")
+  updatedAt             DateTime           @updatedAt @map("updated_at")
+  user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model Usage {
+  id               String   @id @default(uuid()) @db.Uuid
+  userId           String   @map("user_id") @db.Uuid
+  date             DateTime @db.Date
+  generationsCount Int      @default(0) @map("generations_count")
+  exportsCount     Int      @default(0) @map("exports_count")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId, date])
+  @@map("usage")
+}
+
+model WebhookEvent {
+  id             String   @id @default(uuid()) @db.Uuid
+  stripeEventId  String   @unique @map("stripe_event_id")
+  type           String
+  receivedAt     DateTime @default(now()) @map("received_at")
+
+  @@map("webhook_events")
+}

@@ -1,0 +1,19 @@
+Senior Software Engineer - Full Stack
+
+We are looking for a Senior Software Engineer to join our team. You will be responsible for building and maintaining our web applications using modern technologies.
+
+Requirements:
+- 5+ years of experience in software development
+- Strong proficiency in TypeScript, React, and Node.js
+- Experience with PostgreSQL and database design
+- Knowledge of cloud services (AWS/GCP)
+- Experience with CI/CD pipelines
+- Strong problem-solving skills
+- Excellent communication skills
+- Experience with agile methodologies
+
+Nice to have:
+- Experience with Next.js
+- Knowledge of Docker and Kubernetes
+- Experience with GraphQL
+- Understanding of microservices architecture

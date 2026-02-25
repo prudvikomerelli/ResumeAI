@@ -1,0 +1,26 @@
+John Doe
+john.doe@email.com | (555) 123-4567 | linkedin.com/in/johndoe
+
+SUMMARY
+Experienced software engineer with 6 years of experience building web applications.
+
+EXPERIENCE
+
+Software Engineer, TechCorp (2020 - Present)
+- Built and maintained React applications serving 100K+ users
+- Developed RESTful APIs using Node.js and Express
+- Managed PostgreSQL databases and optimized queries
+- Implemented CI/CD pipelines using GitHub Actions
+- Collaborated with cross-functional teams in agile sprints
+
+Junior Developer, StartupXYZ (2018 - 2020)
+- Developed frontend features using React and TypeScript
+- Built backend services with Node.js
+- Worked with MongoDB and PostgreSQL databases
+- Participated in code reviews and pair programming
+
+EDUCATION
+B.S. Computer Science, State University (2018)
+
+SKILLS
+JavaScript, TypeScript, React, Node.js, Python, PostgreSQL, MongoDB, Git, Docker, AWS, HTML, CSS
