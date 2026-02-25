@@ -27,7 +27,7 @@ A production-style SaaS that transforms your resume into an **ATS-optimized, job
 ## Project Structure
 
 ```
-webapp/
+ResumeAI/
 ├── prisma/schema.prisma          # Database schema
 ├── scripts/                      # CLI test scripts
 ├── src/
@@ -67,7 +67,7 @@ webapp/
 
 1. **Install dependencies**
    ```bash
-   cd webapp
+   cd ResumeAI
    npm install
    ```
 
